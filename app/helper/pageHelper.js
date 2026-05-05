@@ -34,3 +34,18 @@ export function getStateLabel(state) {
   };
   return labels[state];
 }
+
+export async function createOrUpdateRoot(strPath) {
+  
+  // Définit le chemin complet du dossier de téléchargement
+  const uploadDir = path.join(process.cwd(), strPath);
+
+  try {
+    // Créer le dossier s'il n'existe pas
+    await fs.mkdir(uploadDir, { recursive: true });
+
+    return { success: true, path: uploadDir };
+  } catch (error) {
+    return { error: error.message };
+  }
+}

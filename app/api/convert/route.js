@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import libre from "libreoffice-convert";
 import { fromBuffer } from "pdf2pic";
 import { PDFDocument } from 'pdf-lib';
+import { createOrUpdateRoot } from "../../helper/pageHelper";
 import fs from "fs";
 import path from "path";
 
@@ -40,7 +41,8 @@ export async function POST(req) {
     const pageCount = pdfDoc.getPageCount();
 
     const fileName = name ? name.replace(/\.[^/.]+$/, "") : `conv_${Date.now()}`;
-    const savePath = "/tmp"; // Assurez-vous que ce dossier existe ou utilisez path.join(process.cwd(), 'tmp')
+    const pathData = await createOrUpdateRoot("tmp");
+    const savePath = pathData.success ? pathData.path : "/tmp"; // Utilise le chemin retourné par createOrUpdateRoot
 
     const options = {
       density: 100,
