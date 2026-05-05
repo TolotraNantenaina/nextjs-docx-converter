@@ -8,6 +8,8 @@ import { DropZone } from "./components/dropZone";
 import { FileInfoBadge } from "./components/fileInfoBadge";
 import { PreviewPanel } from "./components/previewPanel";
 import { HowItWorks } from "./components/howItWorks";
+import ThemeChanger from "./components/themeChanger";
+import { useTheme } from "next-themes";
 import { useWindowSize } from "./hook/useWindowSize";
 
 // ─── Main Component ───────────────────────────────────────────────────────────
@@ -19,6 +21,7 @@ export default function DocxConverter() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState(null);
   const [processingLabel, setProcessingLabel] = useState(`Loading libraries…`);
+  const { theme } = useTheme();
   const inputRef = useRef(null);
 
   const manageFile = useCallback(async (file) => {
@@ -94,8 +97,12 @@ export default function DocxConverter() {
       {/* Top header bar */}
       <header className="flex items-center justify-between mb-16 pb-8 border-b border-border">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-lg bg-white dark:bg-black flex items-center justify-center">
-            <svg className="w-5 h-5 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className={`w-10 h-10 rounded-lg ${
+            theme === 'dark' ? 'bg-white' : 'bg-black'
+            } flex items-center justify-center`}>
+            <svg className={`w-5 h-5 ${
+              theme === 'dark' ? 'text-black' : 'text-white'
+              }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
@@ -104,7 +111,10 @@ export default function DocxConverter() {
             <p className="text-xs text-muted-foreground">Convertir vos documents Word et PDF en image PNG</p>
           </div>
         </div>
-        <StatusBadge state={appState} />
+        <div className="flex items-center gap-4">
+          <StatusBadge state={appState} />
+          <ThemeChanger />
+        </div>
       </header>
 
       {/* Main two-column layout */}
