@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { APP_STATES, formatFileSize, getStateLabel, PageWidth } from "./helper/pageHelper";
 import { convertDocxToImage } from "./service/convertService";
 import { StatusBadge } from "./components/statusBadge";
@@ -21,8 +21,13 @@ export default function DocxConverter() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState(null);
   const [processingLabel, setProcessingLabel] = useState(`Loading libraries…`);
-  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const manageFile = useCallback(async (file) => {
     if (!file.name.match(/\.(docx|pdf)$/i)) {
@@ -93,10 +98,10 @@ export default function DocxConverter() {
       <header className="flex items-center justify-between mb-16 pb-8 border-b border-border">
         <div className="flex items-center gap-4">
           <div className={`w-10 h-10 rounded-lg ${
-            theme === 'dark' ? 'bg-white' : 'bg-black'
+            mounted ? (resolvedTheme === 'dark' ? 'bg-white' : 'bg-black') : 'bg-black'
             } flex items-center justify-center`}>
             <svg className={`w-5 h-5 ${
-              theme === 'dark' ? 'text-black' : 'text-white'
+              mounted ? (resolvedTheme === 'dark' ? 'text-black' : 'text-white') : 'text-white opacity-0'
               }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
