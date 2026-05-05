@@ -4,8 +4,8 @@ export function HowItWorks() {
             <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-5">Comment ça marche</h3>
             <div className="flex flex-col gap-4">
                 {[
-                    { icon: `upload`, step: `01`, title: `Téléverser`, desc: `Déposez ou parcourez votre fichier .docx` },
-                    { icon: `zap`, step: `02`, title: `Convertir`, desc: `Conversion côté serveur en utilisant LibreOffice & pdf2pic` },
+                    { icon: `upload`, step: `01`, title: `Téléverser`, desc: `Déposez ou parcourez votre fichier .docx ou .pdf` },
+                    { icon: `zap`, step: `02`, title: `Conversion`, desc: `Traitement et conversion automatique du document en image` },
                     { icon: `image`, step: `03`, title: `Aperçu`, desc: `Voyez l'image rendue avant de la télécharger` },
                     { icon: `download`, step: `04`, title: `Télécharger`, desc: `Enregistrer en tant que fichier PNG haute résolution` },
                 ].map(({ icon, step, title, desc }) => (
