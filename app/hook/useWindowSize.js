@@ -7,16 +7,16 @@ export function useWindowSize() {
   });
 
   useEffect(() => {
-    function handleResize() {
+    function doResize() {
       setWindowSize({
         width: window.innerWidth,
       });
     }
     
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Appel pour initialiser
+    window.addEventListener("resize", doResize);
+    doResize(); // Appel pour initialiser
     
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", doResize);
   }, []);
 
   return windowSize;
