@@ -30,6 +30,7 @@ export function PreviewPanel({ result = null, state = `idle`, onReset = () => { 
         console.log(`[DocxConverter] ZIP downloaded: ${link.download}`);
       });
     }
+    onReset();
   }, [result, images]);
 
   const isEmpty = state === `inactif`;

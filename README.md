@@ -1,6 +1,6 @@
 # Next.js DOCX → PNG Converter
 
-Une application Next.js simple qui convertit un fichier DOCX en image PNG via API Route et App Router.
+Une application Next.js simple qui convertit un fichier DOCX ou PDF en image PNG via API Route et App Router.
 
 ## Installation
 
