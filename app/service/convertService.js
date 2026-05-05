@@ -3,7 +3,6 @@ import { formatFileSize } from '../helper/pageHelper';
 // ─── Core conversion: Using existing API ──────────────────────────────────────
 
 export async function convertDocxToImage(file) {
-  console.log(`[DocxConverter] Starting conversion for: ${file.name}`);
 
   const formData = new FormData();
   formData.append("file", file);

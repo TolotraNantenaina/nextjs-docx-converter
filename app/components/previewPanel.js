@@ -14,7 +14,6 @@ export function PreviewPanel({ result = null, state = `idle`, onReset = () => { 
       link.href = images[0];
       link.download = result.fileName;
       link.click();
-      console.log(`[DocxConverter] Image downloaded: ${result.fileName}`);
     } else {
       const zip = new JSZip();
       images.forEach((img, index) => {
@@ -27,7 +26,6 @@ export function PreviewPanel({ result = null, state = `idle`, onReset = () => { 
         link.href = URL.createObjectURL(content);
         link.download = `${result.fileName.replace(/\.[^/.]+$/, "")}.zip`;
         link.click();
-        console.log(`[DocxConverter] ZIP downloaded: ${link.download}`);
       });
     }
     onReset();

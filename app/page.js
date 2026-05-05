@@ -27,7 +27,6 @@ export default function DocxConverter() {
   const manageFile = useCallback(async (file) => {
     if (!file.name.match(/\.(docx|pdf)$/i)) {
       alert(`Please upload a valid .docx or .pdf file`);
-      console.log(`[DocxConverter] Rejected file type: ${file.name}`);
       return;
     }
     if (file.size > 20 * 1024 * 1024) {
@@ -39,7 +38,6 @@ export default function DocxConverter() {
     setAppState(APP_STATES.PROCESSING);
     setResult(null);
     setProcessingLabel(`Converting document…`);
-    console.log(`[DocxConverter] Processing file: ${file.name}, size: ${file.size}`);
 
     try {
       const converted = await convertDocxToImage(file);
@@ -47,9 +45,7 @@ export default function DocxConverter() {
       await new Promise((r) => setTimeout(r, 300));
       setResult(converted);
       setAppState(APP_STATES.SUCCESS);
-      console.log(`[DocxConverter] Conversion complete: ${converted.fileName}`);
     } catch (err) {
-      console.log(`[DocxConverter] Conversion error:`, err);
       setAppState(APP_STATES.ERROR);
       alert(`Conversion failed: ${err instanceof Error ? err.message : `Unknown error`}`);
     }
@@ -81,7 +77,6 @@ export default function DocxConverter() {
     setAppState(APP_STATES.IDLE);
     setSelectedFile(null);
     setResult(null);
-    console.log(`[DocxConverter] Reset to idle state`);
   }, []);
 
   const manageRemoveFile = useCallback(() => {
