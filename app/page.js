@@ -98,14 +98,14 @@ export default function DocxConverter() {
   const canDrop = appState === APP_STATES.IDLE || appState === APP_STATES.ERROR;
 
   return (
-    <div data-cmp="DocxConverter" className="w-full max-w-[1440px] mx-auto min-h-screen bg-background pt-8 min-[650px]:pl-32 min-[650px]:pr-32 max-[650px]:pl-8 max-[650px]:pr-8 min-[1180px]:pb-16">
+    <div data-cmp="DocxConverter" className="w-full max-w-[1440px] mx-auto min-h-screen bg-background pt-8 min-[680px]:pl-32 min-[680px]:pr-32 max-[680px]:pl-8 max-[680px]:pr-8 min-[1180px]:pb-16">
       {/* Top header bar */}
       <header className="flex items-center justify-between mb-16 pb-8 border-b border-border">
         <div className="flex items-center gap-4">
           <div className={`w-10 h-10 rounded-lg ${
             mounted ? (resolvedTheme === 'dark' ? 'bg-white' : 'bg-black') : 'bg-black'
             } flex items-center justify-center`}>
-            <svg className={`w-5 h-5 ${
+            <svg className={`w-5 h-5 min-[480px]:shrink-0 ${
               mounted ? (resolvedTheme === 'dark' ? 'text-black' : 'text-white') : 'text-white opacity-0'
               }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -113,12 +113,18 @@ export default function DocxConverter() {
           </div>
           <div>
             <h1 className="text-lg font-bold text-foreground tracking-tight">DocVersImage</h1>
-            <p className="text-xs text-muted-foreground">Convertir vos documents Word et PDF en image PNG</p>
+            <p className="text-xs text-muted-foreground max-[450px]:max-w-[200px]">
+              Convertir vos documents Word et PDF en image PNG
+            </p>
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="min-[450px]:flex min-[450px]:items-center max-[450px]:items-end max-[450px]:flex-row min-[450px]:gap-4">
+          { pageWidth < 450 && 
+          <div className="mb-[3px] pl-4 items-end">
+            <ThemeChanger />
+          </div>}
           <StatusBadge state={appState} />
-          <ThemeChanger />
+          { pageWidth >= 450 && <ThemeChanger /> }
         </div>
       </header>
 
@@ -168,12 +174,13 @@ export default function DocxConverter() {
                 (s === APP_STATES.PROCESSING && appState === APP_STATES.SUCCESS || (s === APP_STATES.SUCCESS && appState === APP_STATES.SUCCESS));
               return (
                 <React.Fragment key={s}>
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
-                      ${isDone ? `bg-primary text-primary-foreground` : isActive ? `bg-primary/15 text-primary ring-2 ring-primary/30` : `bg-muted text-muted-foreground`}`}>
+                  <div className="min-[450px]:flex min-[450px]:items-center gap-3">
+                    <div className={`min-[480px]:w-8 min-[480px]:h-8 max-[480px]:w-6 max-[480px]:h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
+                      max-[480px]:text-[10px] ring-2 ring-primary/30
+                      ${isDone ? `bg-primary text-primary-foreground` : isActive ? `bg-primary/15 text-primary ` : `bg-muted text-muted-foreground`}`}>
                       {isDone ? <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg> : i + 1}
                     </div>
-                    <span className={`text-sm font-medium transition-colors duration-200 ${isActive || isDone ? `text-foreground` : `text-muted-foreground`}`}>
+                    <span className={`text-sm max-[480px]:text-[10px] font-medium transition-colors duration-200 ${isActive || isDone ? `text-foreground` : `text-muted-foreground`}`}>
                       {getStateLabel(s)}
                     </span>
                   </div>
