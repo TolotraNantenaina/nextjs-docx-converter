@@ -7,11 +7,11 @@ export const metadata = {
   opensGraph: {
     title: 'Convertisseur DOCX, PDF → PNG',
     description: 'Convertit un fichier DOCX ou PDF en image PNG via Next.js API Route',
-    url: 'https://doc-to-image.netlify.app',
+    url: 'https://doc-vers-image.onrender.com',
     siteName: 'DocVersImage',
     images: [
       {
-        url: 'https://doc-to-image.netlify.app/og-image.png',
+        url: 'https://doc-vers-image.onrender.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'DocVersImage - Convertisseur DOCX, PDF → PNG',
@@ -24,7 +24,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Convertisseur DOCX, PDF → PNG',
     description: 'Convertit un fichier DOCX ou PDF en image PNG via Next.js API Route',
-    images: ['https://doc-to-image.netlify.app/og-image.png'],
+    images: ['https://doc-vers-image.onrender.com/og-image.png'],
   },
 };
 
