@@ -11,6 +11,7 @@ import { HowItWorks } from "./components/howItWorks";
 import ThemeChanger from "./components/themeChanger";
 import { useTheme } from "next-themes";
 import { useWindowSize } from "./hook/useWindowSize";
+import { useLoader } from "./context/LoaderContext";
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
@@ -23,6 +24,7 @@ export default function DocxConverter() {
   const [processingLabel, setProcessingLabel] = useState(`Loading libraries…`);
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
+  const { showLoader, hideLoader, updateLabel } = useLoader();
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -43,18 +45,21 @@ export default function DocxConverter() {
     setAppState(APP_STATES.PROCESSING);
     setResult(null);
     setProcessingLabel(`Converting document…`);
+    showLoader(`Chargement des bibliothèques…`);
 
     try {
       const converted = await convertDocxToImage(file);
-      setProcessingLabel(`Finalizing image…`);
+      updateLabel(`Finalisation de l'image…`);
       await new Promise((r) => setTimeout(r, 300));
       setResult(converted);
       setAppState(APP_STATES.SUCCESS);
+      hideLoader();
     } catch (err) {
       setAppState(APP_STATES.ERROR);
+      hideLoader();
       alert(`Conversion failed: ${err instanceof Error ? err.message : `Unknown error`}`);
     }
-  }, []);
+  }, [showLoader, hideLoader, updateLabel]);
 
   const manageDragOver = useCallback((e) => {
     e.preventDefault();
