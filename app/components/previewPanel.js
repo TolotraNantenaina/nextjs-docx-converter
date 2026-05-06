@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { ProcessingLoader } from "./processingLoader";
 import JSZip from 'jszip';
 import { base64ToBlob } from "../helper/pageHelper";
@@ -36,9 +36,14 @@ export function PreviewPanel({ result = null, state = `idle`, onReset = () => { 
   const isSuccess = state === `succes`;
 
   const [currentPage, setCurrentPage] = useState(0);
-  console.log("Current page:", currentPage, "Total images:", images.length, "Current image:", images[currentPage]);
-  
-  const currentImage = images[currentPage] ?? "";
+
+  useEffect(() => {
+    if (images.length > 0) {
+      setCurrentPage(0);
+    }
+  }, [images.length]);
+
+  const currentImage = images[currentPage] ?? images[0] ?? "";
   const hasMultiple = images.length > 1;
 
   return (
