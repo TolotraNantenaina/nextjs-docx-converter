@@ -1,11 +1,16 @@
 // ─── Sub-components ───────────────────────────────────────────────────────────
+import { useTheme } from "next-themes";
 
 export function ProcessingLoader({ label = `Conversion du document…` }) {
+  const { theme } = useTheme();
+
   return (
     <div className="flex flex-col items-center justify-center py-16 gap-5 animate-fade-in-up">
       <div className="relative w-16 h-16">
         <div className="absolute inset-0 rounded-full border-4 border-border" />
-        <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin" />
+        <div className={`absolute inset-0 rounded-full border-4 ${
+          theme === 'dark' ? 'border-t-white' : 'border-t-black'
+        } border-t-black border-r-transparent border-b-transparent border-l-transparent animate-spin`} />
         <div className="absolute inset-3 rounded-full bg-secondary flex items-center justify-center">
           <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
