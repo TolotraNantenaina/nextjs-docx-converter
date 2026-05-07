@@ -100,7 +100,7 @@ export default function DocxConverter() {
   return (
     <div data-cmp="DocxConverter" className="w-full max-w-[1440px] mx-auto min-h-screen bg-background pt-8 min-[680px]:pl-32 min-[680px]:pr-32 max-[680px]:pl-8 max-[680px]:pr-8 min-[1180px]:pb-16">
       {/* Top header bar */}
-      <header className="flex items-center justify-between mb-16 pb-8 border-b border-border">
+      <header className="flex items-center justify-between min-[680px]:mb-16 max-[680px]:mb-8 pb-8 border-b border-border">
         <div className="flex items-center gap-4">
           <div className={`w-10 h-10 rounded-lg ${
             mounted ? (resolvedTheme === 'dark' ? 'bg-white' : 'bg-black') : 'bg-black'
@@ -129,7 +129,7 @@ export default function DocxConverter() {
       </header>
 
       {/* Main two-column layout */}
-      <div className="flex flex-col gap-12 items-start min-[1180px]:flex-row">
+      <div className="flex flex-col min-[680px]:gap-12 min-[680px]:gap-6 items-start min-[1180px]:flex-row">
         {/* Left column — Upload */}
         <div className="w-full min-[1180px]:max-w-[450px] shrink-0 flex flex-col gap-6">
           <div className="mb-3">
