@@ -150,11 +150,11 @@ export default function DocxConverter() {
             />
           </div>
 
-          <div className={`transition-all duration-300 ${selectedFile ? `opacity-100` : `opacity-0 pointer-events-none h-0 overflow-hidden`}`}>
-            {selectedFile && (
+          {selectedFile ? (<div className={`transition-all duration-300 ${selectedFile ? `opacity-100` : `opacity-0 pointer-events-none h-0 overflow-hidden`}`}>
               <FileInfoBadge file={selectedFile} onRemove={manageRemoveFile} />
-            )}
-          </div>
+          </div>) :
+           (<div className={`h-0`}>
+          </div>)}
 
           {/* How it works */}
           { pageWidth >= 1180 && <HowItWorks /> }
