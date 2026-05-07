@@ -129,9 +129,9 @@ export default function DocxConverter() {
       </header>
 
       {/* Main two-column layout */}
-      <div className="flex flex-col min-[680px]:gap-12 min-[680px]:gap-6 items-start min-[1180px]:flex-row">
+      <div className="flex flex-col min-[680px]:gap-12 max-[680px]:gap-6 items-start min-[1180px]:flex-row">
         {/* Left column — Upload */}
-        <div className="w-full min-[1180px]:max-w-[450px] shrink-0 flex flex-col gap-6">
+        <div className="w-full min-[1180px]:max-w-[450px] shrink-0 flex flex-col min-[680px]:gap-12 max-[680px]:gap-6">
           <div className="mb-3">
             <h2 className="text-xl font-bold text-foreground mb-3">Téléverser un document</h2>
             <p className="text-sm text-muted-foreground">
