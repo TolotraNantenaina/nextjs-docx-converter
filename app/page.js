@@ -120,7 +120,9 @@ export default function DocxConverter() {
         </div>
         <div className="min-[450px]:flex min-[450px]:items-center max-[450px]:items-end max-[450px]:flex-row min-[450px]:gap-4">
           { pageWidth < 450 && 
-          <div className="mb-[3px] pl-4 items-end">
+          <div className={`mb-[3px]
+            ${ appState === APP_STATES.IDLE ? 'pl-5' : (appState === APP_STATES.PROCESSING ? 'pl-11' : ( appState === APP_STATES.SUCCESS ? 'pl-6' : 'pl-4' ))}
+          items-end`}>
             <ThemeChanger />
           </div>}
           <StatusBadge state={appState} />

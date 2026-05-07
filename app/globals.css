@@ -130,6 +130,10 @@
     background-color: var(--muted);
   }
 
+  .bg-muted-foreground {
+    background-color: var(--muted-foreground);
+  }
+
   .bg-accent {
     background-color: var(--accent);
   }
