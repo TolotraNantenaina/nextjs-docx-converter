@@ -139,7 +139,9 @@ export default function DocxConverter() {
             </p>
           </div>
 
-          <div className={`transition-opacity duration-200 ${canDrop ? `opacity-100` : `opacity-40 pointer-events-none`}`}>
+          <div className={`transition-opacity duration-200 ${canDrop ? `opacity-100` : `opacity-40 pointer-events-none`}
+          ${ !selectedFile && `min-[680px]:mb-7 max-[680px]:mb-5`}
+          `}>
             <DropZone
               isDragging={isDragging}
               onDragOver={manageDragOver}
@@ -150,10 +152,8 @@ export default function DocxConverter() {
             />
           </div>
 
-          {selectedFile ? (<div className={`transition-all duration-300 ${selectedFile ? `opacity-100` : `opacity-0 pointer-events-none h-0 overflow-hidden`}`}>
+          {selectedFile && (<div className={`transition-all duration-300 ${selectedFile ? `opacity-100` : `opacity-0 pointer-events-none h-0 overflow-hidden`}`}>
               <FileInfoBadge file={selectedFile} onRemove={manageRemoveFile} />
-          </div>) :
-           (<div className={`h-0`}>
           </div>)}
 
           {/* How it works */}
