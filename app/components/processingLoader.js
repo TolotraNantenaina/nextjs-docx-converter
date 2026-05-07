@@ -18,8 +18,8 @@ export function ProcessingLoader({ label = `Conversion du document…` }) {
         </div>
       </div>
       <div className="text-center">
-        <p className="text-sm font-semibold text-foreground mb-1">{label}</p>
-        <p className="text-xs text-muted-foreground">Cela peut prendre quelques secondes</p>
+        <p className="text-sm font-semibold text-foreground mb-1 text-center">{label}</p>
+        <p className="text-xs text-muted-foreground text-center">Cela peut prendre quelques secondes</p>
       </div>
       <div className="w-48 h-1.5 rounded-full bg-muted overflow-hidden">
         <div className="h-full w-full animate-shimmer rounded-full" />
