@@ -1,6 +1,6 @@
 export function HowItWorks() {
     return (
-        <div className="mt-6 rounded-xl border border-border bg-card p-6 shadow-custom">
+        <div className="max-[1180px]:mt-6 rounded-xl border border-border bg-card p-6 shadow-custom">
             <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-5">Comment ça marche</h3>
             <div className="flex flex-col gap-4">
                 {[
